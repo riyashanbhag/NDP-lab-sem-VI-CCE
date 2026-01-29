@@ -1,0 +1,6 @@
+1 Riya CCE 6 A CN,OS,DBMS Chennai CN 85
+2 Richa ECE 6 B DSP,VLSI Delhi DSP 78
+3 Mugdha IT 4 C OOPS,DBMS Mumbai DBMS 90
+4 Aarav ME 5 D Thermo,Fluid Pune THERMO 82
+5 Priya CSE 6 A AI,ML Bangalore AI 95
+6 Sameer ECE 4 C VLSI,Networking Delhi VLSI 88

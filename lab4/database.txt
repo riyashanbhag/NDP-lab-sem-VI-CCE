@@ -1,0 +1,5 @@
+google.com 142.250.190.78
+openai.com 104.18.6.92
+github.com 140.82.114.4
+stackoverflow.com 151.101.193.69
+example.com 93.184.216.34
