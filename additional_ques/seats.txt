@@ -1,0 +1,2 @@
+Mangalore-Mumbai 40 10
+Delhi-Chennai 40 0
