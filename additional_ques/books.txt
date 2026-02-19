@@ -1,0 +1,3 @@
+C_Programming Dennis 101 350 PHI
+Networking_Tutorial Kurose 102 400 Pearson
+DBMS_Concepts Silberschatz 103 500 McGrawHill
