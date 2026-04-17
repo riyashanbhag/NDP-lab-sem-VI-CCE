@@ -1,0 +1,172 @@
+Got you — here’s a **clean, exam-ready cheat sheet** with all the basic CLI templates you’ve been using (IP, RIP, OSPF, DHCP, NAT, Serial, etc.) 🚀
+Keep this and you can solve almost any question.
+
+---
+
+#  1. BASIC ROUTER SETUP
+
+```bash
+enable
+config t
+hostname R1
+
+interface g0/0
+ip address <IP> <MASK>
+no shutdown
+
+interface s0/1/0
+ip address <IP> <MASK>
+clock rate 64000   ! only if DCE
+no shutdown
+```
+
+---
+
+#  2. STATIC ROUTING
+
+```bash
+ip route <destination-network> <mask> <next-hop-ip>
+```
+
+---
+
+#  3. RIP (v2)
+
+```bash
+router rip
+version 2
+no auto-summary
+network <major-network>
+```
+
+✅ Example:
+
+```bash
+network 192.168.1.0
+```
+
+---
+
+#  4. OSPF
+
+## Exact (subnet-wise)
+
+```bash
+router ospf 1
+network <network> <wildcard> area 0
+```
+
+## Shortcut (covers all)
+
+```bash
+router ospf 1
+network 192.168.1.0 0.0.0.255 area 0
+```
+
+---
+
+#  5. DHCP
+
+## Basic DHCP
+
+```bash
+ip dhcp excluded-address <start> <end>
+
+ip dhcp pool <name>
+network <network> <mask>
+default-router <gateway>
+dns-server 8.8.8.8
+```
+
+---
+
+## Half DHCP + Half Static
+
+```bash
+ip dhcp excluded-address 192.168.1.1 192.168.1.50
+```
+
+👉 Manual: .1–.50
+👉 DHCP: rest
+
+---
+
+# 🔥 6. NAT
+
+## (A) Static NAT
+
+```bash
+interface g0/0
+ip nat inside
+
+interface s0/1/0
+ip nat outside
+
+ip nat inside source static <private-ip> <public-ip>
+```
+
+---
+
+## (B) PAT (Overload) ⭐ MOST IMPORTANT
+
+```bash
+access-list 1 permit <network> <wildcard>
+
+interface g0/0
+ip nat inside
+
+interface s0/1/0
+ip nat outside
+
+ip nat inside source list 1 interface s0/1/0 overload
+```
+
+---
+
+# 🔥 7. RIP + OSPF (Redistribution)
+
+```bash
+router ospf 1
+redistribute rip subnets
+
+router rip
+redistribute ospf 1 metric 1
+```
+
+---
+
+# 🔥 8. VERIFY COMMANDS
+
+```bash
+show ip route
+show ip interface brief
+show ip nat translations
+show ip dhcp binding
+show ip ospf neighbor
+```
+
+---
+
+# 🔥 9. COMMON FIXES
+
+```bash
+no shutdown
+```
+
+Check DCE:
+
+```bash
+show controllers serial 0/1/0
+```
+
+---
+
+# 🔥 10. WILDCARD QUICK TABLE
+
+| CIDR | Mask            | Wildcard  |
+| ---- | --------------- | --------- |
+| /25  | 255.255.255.128 | 0.0.0.127 |
+| /27  | 255.255.255.224 | 0.0.0.31  |
+| /30  | 255.255.255.252 | 0.0.0.3   |
+
+---
