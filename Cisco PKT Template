@@ -179,3 +179,16 @@ show controllers serial 0/1/0
 | /32  | 255.255.255.255 | 0.0.0.0       |
 
 ---
+
+✅ Option 1: Use RIP only (recommended for this step)
+Remove OSPF first:
+config t
+no router ospf 1
+end
+Then configure RIP on ALL routers:
+config t
+router rip
+version 2
+no auto-summary
+network 192.168.1.0
+end
